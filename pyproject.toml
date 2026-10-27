@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pixo"
+version = "1.0.0"
+description = "Gere e confira cobranças Pix (copia e cola + QR Code) sem dependências"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Arthur Martins" }]
+keywords = ["pix", "qrcode", "br-code", "pagamento", "brasil"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Natural Language :: Portuguese (Brazilian)",
+  "Topic :: Office/Business :: Financial",
+]
+dependencies = []
+
+[project.optional-dependencies]
+# Só para os testes: um leitor de QR de verdade confere as imagens geradas.
+dev = ["pytest>=8", "zxing-cpp>=2.2", "numpy>=1.26"]
+
+[project.scripts]
+pixo = "pixo.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "src/pixo"]
+addopts = "--doctest-modules -q"
